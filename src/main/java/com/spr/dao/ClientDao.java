@@ -17,7 +17,9 @@ public interface ClientDao {
 
     int deleteClient(UUID id);
 
-    List<Client> getAllClients();
+    List<Client> selectAllClients();
 
-    Client getClientById(UUID id);
+    Client selectClientByID(UUID id);
+
+    Client selectClientByEmail(String email);
 }

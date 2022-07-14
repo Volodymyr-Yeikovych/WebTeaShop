@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Tea Shop</title>
+        <link rel="stylesheet" th:href="@{/homepageStyles.css}">
+    </head>
+    <body>
+        <div class="container">
+            <div class="screen">
+                <div class="screen_content">
+                    <form class="login" method="post" th:object="${client}">
+                        <div class="login_field">
+                            <i class="login_icon_user"></i>
+                            <input type="text" placeholder="Email" class="login_input" th:field="*{email}">
+                            <span class="validation_error" th:if="${#fields.hasErrors('email')}"
+                                  th:errors="*{email}">Username Error</span>
+                        </div>
+                        <div class="login_field">
+                            <i class="login_icon_lock"></i>
+                            <input type="text" placeholder="Password" class="login_input" th:field="*{password}">
+                            <span class="validation_error" th:if="${#fields.hasErrors('password')}"
+                                  th:errors="*{password}">Password Error</span>
+                        </div>
+                        <button class="button login_submit">
+                            <span class="button_text">Log In Now</span>
+                            <i class="button_icon_chevron_right"></i>
+                        </button>
+                    </form>
+                    <form method="get" th:action="@{/register}" class="register">
+                        <button class="button register_submit">
+                            <span class="button_text">Register</span>
+                        </button>
+                    </form>
+                    <form method="get" th:action="@{/homepage}" class="register">
+                        <button class="button register_submit">
+                            <span class="button_text">Continue As Anonymous</span>
+                        </button>
+                    </form>
+                </div>
+                <div class="screen_background">
+                    <span class="screen_background_shape shape1"></span>
+                    <span class="screen_background_shape shape2"></span>
+                    <span class="screen_background_shape shape3"></span>
+                    <span class="screen_background_shape shape4"></span>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

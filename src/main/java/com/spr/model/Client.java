@@ -1,31 +1,32 @@
 package com.spr.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Client {
 
-    private final UUID id;
+    private UUID id;
 
     @NotBlank
     @NotNull
-    private final String name;
+    private String name;
 
     @NotBlank
     @NotNull
-    private final String password;
+    private String password;
 
     @NotBlank
     @NotNull
-    private final String email;
-    public Client(UUID id, String name, String password, String email) {
-        this.id = id;
-        this.name = name;
-        this.password = password;
-        this.email = email;
-    }
+    private String email;
+
+    private boolean isAdmin;
+
 }
