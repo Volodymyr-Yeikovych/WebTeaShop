@@ -5,6 +5,7 @@ import com.spr.exceptions.EmailAlreadyExistsException;
 import com.spr.exceptions.InvalidClientIdException;
 import com.spr.exceptions.InvalidPasswordException;
 import com.spr.model.Client;
+import com.spr.model.Tea;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -61,9 +62,10 @@ public class ClientService {
     }
 
     public Client loginClientOrThrow(String email, String password) {
-        Client client = getClientByEmail(email);
-        if (!client.getEmail().equals(password))
+        Client client = new Client(getClientByEmail(email));
+        if (!client.getPassword().equals(password))
             throw new InvalidPasswordException("Invalid password for given client.");
         return client;
     }
+
 }

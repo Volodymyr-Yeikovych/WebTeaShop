@@ -1,10 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Tea Shop</title>
-</head>
-<body>
-    <h1>This is Home Page</h1>
-</body>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Tea Shop</title>
+        <link rel="stylesheet" th:href="@{/homepageStyles.css}">
+    </head>
+    <body>
+        <div class="container">
+            <div class="screen">
+                <div class="screen_content">
+                    <form class="homepage" method="post" th:object="${tea}">
+                        <div class="header_2">
+                            <h2>Order desirable tea amount</h2>
+                        </div>
+                        <div class="home_grid">
+                            <div class="div_select">
+                                <select class="select" th:field="*{id}">
+                                    <option th:each="tea : ${order}" th:value="${tea.id}" th:text="${tea.name}">
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="input_kg">
+                                <input type="text" class="input" placeholder="Kg to buy" th:field="*{kg}">
+                                <span class="validation_error" th:if="${#fields.hasErrors('kg')}"
+                                      th:errors="*{kg}">Kg input error</span>
+                            </div>
+                            <button type="submit" class="button submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="screen_background">
+                    <span class="screen_background_shape shape1"></span>
+                    <span class="screen_background_shape shape2"></span>
+                    <span class="screen_background_shape shape3"></span>
+                    <span class="screen_background_shape shape4"></span>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

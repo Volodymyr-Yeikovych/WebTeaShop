@@ -1,9 +1,11 @@
 package com.spr.dao;
 
+import com.spr.error.InternalFatalError;
 import com.spr.exceptions.InvalidClientIdException;
 import com.spr.exceptions.NoSuchEmailException;
 import com.spr.exceptions.SQLExceptionWrapper;
 import com.spr.model.Client;
+import com.spr.model.Tea;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -58,6 +60,8 @@ public class ClientDataAccessService implements ClientDao {
         if (client.isEmpty()) throw new NoSuchEmailException("Email {" + email + "} does not exist.");
         return client.stream().findFirst().get();
     }
+
+
 
     private Client validateIdAndReturnClient(UUID id) {
         List<Client> clients = jdbcTemplate.query("SELECT * FROM clients WHERE id = ?;", this::clientMapper, id);

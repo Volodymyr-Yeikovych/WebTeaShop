@@ -9,10 +9,10 @@
         <div class="container">
             <div class="screen">
                 <div class="screen_content">
-                    <form class="login" method="post" th:object="${client}">
+                    <form class="login" method="post" th:object="${client}" th:action="@{/login}">
                         <div class="login_field">
                             <i class="login_icon_user"></i>
-                            <input type="text" placeholder="Email" class="login_input" th:field="*{email}">
+                            <input type="text" placeholder="Email" class="login_input" th:field="*{email}"><br>
                             <span class="validation_error" th:if="${#fields.hasErrors('email')}"
                                   th:errors="*{email}">Username Error</span>
                         </div>
@@ -21,21 +21,16 @@
                             <input type="text" placeholder="Password" class="login_input" th:field="*{password}">
                             <span class="validation_error" th:if="${#fields.hasErrors('password')}"
                                   th:errors="*{password}">Password Error</span>
+                            <p class="validation_error" th:if="${client.hasErrors}">
+                                Email doesn't exist or password is incorrect</p>
                         </div>
-                        <button class="button login_submit">
-                            <span class="button_text">Log In Now</span>
-                            <i class="button_icon_chevron_right"></i>
-                        </button>
+                        <button type="submit" class="button login_submit">Log In Now</button>
                     </form>
                     <form method="get" th:action="@{/register}" class="register">
-                        <button class="button register_submit">
-                            <span class="button_text">Register</span>
-                        </button>
+                        <input type="submit" class="button register_submit" value="Register"/>
                     </form>
                     <form method="get" th:action="@{/homepage}" class="register">
-                        <button class="button register_submit">
-                            <span class="button_text">Continue As Anonymous</span>
-                        </button>
+                        <input type="submit" class="button register_submit" value="Continue As Anonymous"/>
                     </form>
                 </div>
                 <div class="screen_background">
