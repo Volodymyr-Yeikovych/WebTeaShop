@@ -19,6 +19,8 @@
                                     <option th:each="tea : ${order}" th:value="${tea.id}" th:text="${tea.name}">
                                     </option>
                                 </select>
+                                <span class="validation_error" th:if="${tea.hasErrors}">Ordered kg is more than in stock
+                                    or is invalid</span>
                             </div>
                             <div class="input_kg">
                                 <input type="text" class="input" placeholder="Kg to buy" th:field="*{kg}">

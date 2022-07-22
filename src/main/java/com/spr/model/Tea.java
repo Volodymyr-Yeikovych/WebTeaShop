@@ -11,7 +11,6 @@ import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class Tea {
 
@@ -22,11 +21,22 @@ public class Tea {
     // TODO: Force number be integer and if its decimal throw error
     private long kg;
     private long price;
+    private boolean hasErrors = false;
+    private boolean isNormalized = false;
 
     public Tea(Tea tea) {
         this.id = tea.getId();
         this.name = tea.getName();
         this.kg = tea.getKg();
         this.price = tea.getPrice();
+        this.hasErrors = tea.isHasErrors();
+        this.isNormalized = tea.isNormalized();
+    }
+
+    public Tea(UUID id, String name, long kg, long price) {
+        this.id = id;
+        this.name = name;
+        this.kg = kg;
+        this.price = price;
     }
 }

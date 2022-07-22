@@ -3,8 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Tea Shop</title>
+    <link rel="stylesheet" th:href="@{/homepageStyles.css}">
 </head>
 <body>
-  <h1>This is purchase page.</h1>
+<div class="container">
+    <div class="purchase_screen">
+        <div class="screen_content">
+            <div>
+                <form method="get" th:action="@{/homepage}">
+                    <input type="submit" value="Order one more tea" class="submit">
+                </form>
+            </div>
+            <div>
+                <form method="post" th:action="@{/purchase}" th:object="${teaOrder}">
+                    <div class="ul_li">
+                        <ul>
+                            <li th:each="tea : ${teaOrder.order}">
+                                <p>
+                                    <span th:text="${tea.name}">Tea Name</span>
+                                     -
+                                    <span th:text="${tea.kg}">Tea Kg</span>
+                                    KG
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                    <input type="submit" value="Continue" class="submit">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

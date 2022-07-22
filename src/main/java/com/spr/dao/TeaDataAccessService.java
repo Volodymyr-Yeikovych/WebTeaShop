@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
 
-@Repository("postgres")
+@Repository("postgresTea")
 public class TeaDataAccessService implements TeaDao {
 
     private final JdbcTemplate jdbcTemplate;

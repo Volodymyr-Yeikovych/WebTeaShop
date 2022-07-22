@@ -15,7 +15,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
 
-@Repository("postgres")
+@Repository("postgresClient")
 public class ClientDataAccessService implements ClientDao {
 
     private final JdbcTemplate jdbcTemplate;
