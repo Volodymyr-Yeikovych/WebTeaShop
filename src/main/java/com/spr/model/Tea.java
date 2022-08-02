@@ -16,9 +16,9 @@ public class Tea {
 
     private UUID id;
     private String name;
-    @NotNull
-    @Min(1)
-    // TODO: Force number be integer and if its decimal throw error
+    @NotNull(message = "Invalid number.")
+    @Min(message = "Invalid number.", value = 1)
+    @Digits(integer = 9, fraction = 0, message = "Invalid number.")
     private long kg;
     private long price;
     private boolean hasErrors = false;

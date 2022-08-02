@@ -276,7 +276,25 @@ body {
 .purchase_screen {
 	background: linear-gradient(90deg, #5D54A4, #7C78B8);
 	position: relative;
-	height: 600px;
-	width: 900px;
+	height: 700px;
+	width: 400px;
 	box-shadow: 0px 0px4px #5C5696;
+}
+
+.pr_button {
+	width: 300px;
+	margin: auto;
+}
+
+.ul_li {
+	width: 340px;
+	margin-left: 100px;
+	color: white;
+	margin-top: 10px;
+}
+
+.input_info {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 60px;
 }

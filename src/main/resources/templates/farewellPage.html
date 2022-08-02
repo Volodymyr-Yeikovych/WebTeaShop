@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tea Shop</title>
+    <link rel="stylesheet" th:href="@{/homepageStyles.css}">
+</head>
+<body>
+  <div class="container">
+      <div class="screen">
+          <div class="screen_content">
+              <form method="get" th:action="@{/login}">
+                  <div class="header_2">
+                      <h2>Dear Customer. Thank you for your purchase.</h2>
+                  </div>
+                  <div class="home_grid">
+                      <button type="submit" class="button submit">Return to Login Page</button>
+                  </div>
+            </form>
+          </div>
+          <div class="screen_background">
+              <span class="screen_background_shape shape1"></span>
+              <span class="screen_background_shape shape2"></span>
+              <span class="screen_background_shape shape3"></span>
+              <span class="screen_background_shape shape4"></span>
+          </div>
+      </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tea Shop</title>
+    <link rel="stylesheet" th:href="@{/homepageStyles.css}">
+</head>
+<body>
+    <div class="container">
+        <div class="screen">
+            <div class="screen_content">
+                <form th:action="@{/register}" method="post" th:object="${client}">
+                    <h3>Register</h3>
+                    <div class="input_info">
+                        <input type="text" class="input" placeholder="Enter Your Name" th:field="*{name}">
+                        <span class="validation_error" th:if="${#fields.hasErrors('name')}"
+                              th:errors="*{name}"></span>
+
+                        <input type="text" class="input" placeholder="Choose Password" th:field="*{password}">
+                        <span class="validation_error" th:if="${#fields.hasErrors('password')}"
+                              th:errors="*{password}"></span>
+
+                        <input type="text" class="input" placeholder="Enter Your Email" th:field="*{email}">
+                        <span class="validation_error" th:if="${#fields.hasErrors('email')}"
+                              th:errors="*{email}"></span>
+                        <p th:if="${client.hasErrors}" class="validation_error">
+                            Client With Such Email Already exists
+                        </p>
+                    </div>
+                    <div class="pr_button">
+                        <input type="submit" value="Register Now" class="submit">
+                    </div>
+                </form>
+            </div>
+            <div class="screen_background">
+                <span class="screen_background_shape shape1"></span>
+                <span class="screen_background_shape shape2"></span>
+                <span class="screen_background_shape shape3"></span>
+                <span class="screen_background_shape shape4"></span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

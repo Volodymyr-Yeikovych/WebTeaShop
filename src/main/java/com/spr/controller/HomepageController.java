@@ -11,10 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 @Slf4j
@@ -22,19 +20,21 @@ import java.util.List;
 @SessionAttributes("teaOrder")
 public class HomepageController {
 
-    //TODO: fix that you can log in without actually logging in, just by typing /homepage in the path
-    private final ClientService clientService;
     private final TeaService teaService;
+    private final ClientService clientService;
 
     @Autowired
-    public HomepageController(ClientService clientService, TeaService teaService) {
-        this.clientService = clientService;
+    public HomepageController(TeaService teaService, ClientService clientService) {
         this.teaService = teaService;
+        this.clientService = clientService;
     }
 
 
     @GetMapping
     public String displayHomepage(Model model) {
+        if (!clientService.clientIsLoggedIn()) {
+            return "redirect:/login";
+        }
         log.info("Displaying homepage.");
         model.addAttribute("order", teaService.getAllTea());
         return "homepage";

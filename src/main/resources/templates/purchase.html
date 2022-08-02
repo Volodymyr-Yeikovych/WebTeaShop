@@ -9,7 +9,7 @@
 <div class="container">
     <div class="purchase_screen">
         <div class="screen_content">
-            <div>
+            <div class="pr_button">
                 <form method="get" th:action="@{/homepage}">
                     <input type="submit" value="Order one more tea" class="submit">
                 </form>
@@ -28,9 +28,50 @@
                             </li>
                         </ul>
                     </div>
-                    <input type="submit" value="Continue" class="submit">
+                    <div class="input_info">
+                        <input type="text" class="input" placeholder="Enter Your Name" th:field="*{deliveryName}">
+                        <span class="validation_error" th:if="${#fields.hasErrors('deliveryName')}"
+                              th:errors="*{deliveryName}"></span>
+
+                        <input type="text" class="input" placeholder="Enter Street" th:field="*{deliveryStreet}">
+                        <span class="validation_error" th:if="${#fields.hasErrors('deliveryStreet')}"
+                              th:errors="*{deliveryStreet}"></span>
+
+                        <input type="text" class="input" placeholder="Enter City" th:field="*{deliveryCity}">
+                        <span class="validation_error" th:if="${#fields.hasErrors('deliveryCity')}"
+                              th:errors="*{deliveryCity}"></span>
+
+                        <input type="text" class="input" placeholder="Enter State" th:field="*{deliveryState}">
+                        <span class="validation_error" th:if="${#fields.hasErrors('deliveryState')}"
+                              th:errors="*{deliveryState}"></span>
+
+                        <input type="text" class="input" placeholder="Enter Zip" th:field="*{deliveryZip}">
+                        <span class="validation_error" th:if="${#fields.hasErrors('deliveryZip')}"
+                              th:errors="*{deliveryZip}"></span>
+
+                        <input type="text" class="input" placeholder="Credit Card Num" th:field="*{ccNumber}">
+                        <span class="validation_error" th:if="${#fields.hasErrors('ccNumber')}"
+                              th:errors="*{ccNumber}"></span>
+
+                        <input type="text" class="input" placeholder="Card Expiration" th:field="*{ccExpiration}">
+                        <span class="validation_error" th:if="${#fields.hasErrors('ccExpiration')}"
+                              th:errors="*{ccExpiration}"></span>
+
+                        <input type="text" class="input" placeholder="CVV" th:field="*{ccCVV}">
+                        <span class="validation_error" th:if="${#fields.hasErrors('ccCVV')}"
+                              th:errors="*{ccCVV}"></span>
+                    </div>
+                    <div class="pr_button">
+                        <input type="submit" value="Order" class="submit">
+                    </div>
                 </form>
             </div>
+        </div>
+        <div class="screen_background">
+            <span class="screen_background_shape shape1"></span>
+            <span class="screen_background_shape shape2"></span>
+            <span class="screen_background_shape shape3"></span>
+            <span class="screen_background_shape shape4"></span>
         </div>
     </div>
 </div>

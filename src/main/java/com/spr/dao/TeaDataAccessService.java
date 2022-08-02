@@ -35,10 +35,10 @@ public class TeaDataAccessService implements TeaDao {
         return tea.stream().findFirst().get();
     }
 
-    //TODO: implement method correctly
     @Override
     public int updateTea(Tea tea) {
-        return 0;
+        return jdbcTemplate.update("UPDATE public.stock SET id=?, name=?, av_kg=?, price_kg=? WHERE id = ?;",
+                tea.getId(), tea.getName(), tea.getKg(), tea.getPrice(), tea.getId());
     }
 
     private Tea teaMapper(ResultSet rs, int i) {

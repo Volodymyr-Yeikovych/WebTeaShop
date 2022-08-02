@@ -46,7 +46,18 @@ public class TeaService {
         dbTea.setKg(newDbKgNum);
         teaDao.updateTea(dbTea);
 
-        return new Tea(dbTea.getId(), dbTea.getName(), kgToPurchase, dbTea.getPrice());
+        Tea newTea = new Tea(dbTea.getId(), dbTea.getName(), kgToPurchase, dbTea.getPrice());
+        if (newDbKgNum < 50) {
+            orderMoreTea(newTea);
+        }
+
+        return newTea;
+    }
+
+    private void orderMoreTea(Tea tea) {
+        Tea newTea = new Tea(tea);
+        newTea.setKg(tea.getKg() + 200);
+        teaDao.updateTea(newTea);
     }
 
     public void normalize(Tea tea, TeaOrder order) {

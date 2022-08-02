@@ -28,14 +28,11 @@ public class Client {
     @NotBlank(message = "Password must not be blank")
     @NotNull(message = "Password must not be blank")
     private String password;
-
     @NotBlank
     @NotNull
     @Pattern(regexp = EMAIL_VALIDATION_REGEX, message = "Email is incorrect")
     private String email;
-
     private boolean isAdmin;
-
     private boolean hasErrors;
 
     public Client(Client client) {

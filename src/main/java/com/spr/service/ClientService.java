@@ -5,19 +5,18 @@ import com.spr.exceptions.EmailAlreadyExistsException;
 import com.spr.exceptions.InvalidClientIdException;
 import com.spr.exceptions.InvalidPasswordException;
 import com.spr.model.Client;
-import com.spr.model.Tea;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 public class ClientService {
 
     private final ClientDao clientDao;
+    private boolean isLoggedIn;
 
     @Autowired
     public ClientService(@Qualifier("postgresClient") ClientDao clientDao) {
@@ -41,14 +40,6 @@ public class ClientService {
         clientDao.insertClient(client);
     }
 
-    public void updateClient(UUID id, Client client) {
-
-    }
-
-    public void deleteClient(UUID id) {
-
-    }
-
     public List<Client> getAllClients() {
         return clientDao.selectAllClients();
     }
@@ -68,4 +59,15 @@ public class ClientService {
         return client;
     }
 
+    public boolean clientIsLoggedIn() {
+        return isLoggedIn;
+    }
+
+    public void endSession() {
+        isLoggedIn = false;
+    }
+
+    public void setLoggedIn(boolean loggedIn) {
+        isLoggedIn = loggedIn;
+    }
 }

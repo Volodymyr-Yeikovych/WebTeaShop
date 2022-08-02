@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/login")
@@ -28,7 +29,7 @@ public class LogInController {
 
     @GetMapping
     public String displayHomePage() {
-        log.info("Inside Method: displayHomePage()");
+        log.info("Inside Method: displayLoginPage()");
         return "loginPage";
     }
 
@@ -51,6 +52,7 @@ public class LogInController {
             client.setHasErrors(true);
             return "loginPage";
         }
+        clientService.setLoggedIn(true);
         client.setHasErrors(false);
         log.info("Client authorised: {}", client);
         sessionStatus.setComplete();
