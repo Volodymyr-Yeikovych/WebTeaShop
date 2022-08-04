@@ -3,6 +3,4 @@ spring:
     url: jdbc:postgresql://localhost:5432/spr_tea_shop
     username: tea_shop_owner
     password: admin4
-java:
-  runtime:
-    version: 11
+
