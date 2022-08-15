@@ -5,16 +5,20 @@ import com.spr.exceptions.EmailAlreadyExistsException;
 import com.spr.exceptions.InvalidClientIdException;
 import com.spr.exceptions.InvalidPasswordException;
 import com.spr.model.Client;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
 @Service
+@Slf4j
 public class ClientService {
 
+    private static final BCryptPasswordEncoder bCryptEncoder = new BCryptPasswordEncoder();
     private final ClientDao clientDao;
     private boolean isLoggedIn;
 
@@ -54,9 +58,15 @@ public class ClientService {
 
     public Client loginClientOrThrow(String email, String password) {
         Client client = new Client(getClientByEmail(email));
-        if (!client.getPassword().equals(password))
+        if (!bCryptEncoder.matches(password, client.getPassword())) {
+            log.info("Client was not authorised. Given email {}, password {}.", email, password);
             throw new InvalidPasswordException("Invalid password for given client.");
+        }
         return client;
+    }
+
+    public String encryptPwAndReturn(String password) {
+        return bCryptEncoder.encode(password);
     }
 
     public boolean clientIsLoggedIn() {

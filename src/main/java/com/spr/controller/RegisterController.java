@@ -45,6 +45,7 @@ public class RegisterController {
             client.setId(UUID.randomUUID());
             log.info("Registering client with id: {}, name: {}, password: {}, email: {}, isAdmin: {}", client.getId(),
                     client.getName(), client.getPassword(), client.getEmail(), client.isAdmin());
+            client.setPassword(clientService.encryptPwAndReturn(client.getPassword()));
             clientService.addClient(new Client(client));
         }
         client.setHasErrors(false);
